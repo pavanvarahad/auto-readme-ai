@@ -1,0 +1,99 @@
+{
+  "name": "auto-readme-ai",
+  "displayName": "AutoReadMe ",
+  "description": "AutoReadMe - A Simple README Generator for VS CodeAutoReadMe helps you quickly generate a well-structured README file for your projects. It analyzes your project files and provides useful suggestions, making it easier to create clear and informative documentation. Just provide some basic details, and let AutoReadMe do the rest!🚀 Features:Automatically detects key files and structures in your project.Generates a clean and professional README template.Lets you customize sections based on your needs.Saves time by reducing manual work.Perfect for developers who want to create README files effortlessly!",
+  "version": "0.0.5",
+  "engines": {
+    "vscode": "^1.98.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/auto-readme-ai.git"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "auto-readme-ai.generate_readme",
+        "title": "Generate README"
+      }
+    ],
+    "configuration": {
+      "title": "AutoReadMe",
+      "properties": {
+        "autoReadme.aiProvider": {
+          "type": "string",
+          "enum": [
+            "ollama",
+            "gemini"
+          ],
+          "default": "ollama",
+          "description": "The AI provider to use for generating README files"
+        },
+        "autoReadme.ollamaModel": {
+          "type": "string",
+          "default": "llama3.2:latest",
+          "description": "The Ollama model to use for generating README files"
+        },
+        "autoReadme.ollamaEndpoint": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "The Ollama API endpoint URL"
+        },
+        "autoReadme.geminiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your Gemini API key (required for Gemini provider)"
+        },
+        "autoReadme.geminiModel": {
+          "type": "string",
+          "default": "gemini-1.5-flash",
+          "description": "The Gemini model to use for generating README files"
+        },
+        "autoReadme.ignoreDirectories": {
+          "type": "array",
+          "default": [
+            ".git",
+            "node_modules",
+            ".vscode",
+            "dist",
+            "build",
+            "out"
+          ],
+          "description": "Directories to ignore when scanning the workspace"
+        },
+        "autoReadme.ignoreFiles": {
+          "type": "array",
+          "default": [
+            ".DS_Store",
+            ".gitignore",
+            "package-lock.json",
+            "yarn.lock"
+          ],
+          "description": "Files to ignore when scanning the workspace"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.2.1",
+    "axios": "^1.8.2"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.98.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.21.0"
+  }
+}
